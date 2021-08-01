@@ -27,9 +27,129 @@ class _HomePageState extends State<HomePage> {
               bottom: 0,
               child: Column(
                 children: [
-                  Expanded(child: Placeholder(color: Colors.purple,)),
-                  Expanded(child: Placeholder(color: Colors.purple,)),
-                  Expanded(child: Placeholder(color: Colors.purple,))
+                  Expanded(
+                    flex: 5,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: CircleAvatar(
+                                    radius: 32,
+                                  ),
+                                )),
+                                Expanded(
+                                    child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Apr. 2021',
+                                      style: TextStyle(color: Colors.white, fontSize: 16),
+                                    ),
+                                    IconButton(
+                                      icon: Icon(Icons.keyboard_arrow_down),
+                                      color: Colors.white,
+                                      onPressed: () {},
+                                    )
+                                  ],
+                                )),
+                                Expanded(
+                                  child: Center(
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Container(
+                                        height: 58,
+                                        width: 58,
+                                        child: Stack(
+                                          children: [
+                                            Positioned(
+                                              left: 6,
+                                              right: 6,
+                                              top: 6,
+                                              bottom: 6,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: Center(
+                                                  child: Icon(
+                                                    Icons.notifications,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              right: 0,
+                                              top: 0,
+                                              child: CircleAvatar(
+                                                backgroundColor:
+                                                    lightPurpleColor,
+                                                radius: 8,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Good morning, Dr',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  'You have 15 patients today',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                      flex: 4,
+                      child: Placeholder(
+                        color: Colors.purple,
+                      )),
+                  Expanded(
+                      flex: 10,
+                      child: Placeholder(
+                        color: Colors.purple,
+                      ))
                 ],
               ),
             ),
