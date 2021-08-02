@@ -5,6 +5,14 @@ Color deepDarkColor = Color(0xff17171b);
 Color deepPurpleColor = Color(0xff9292e4);
 Color lightPurpleColor = Color(0xffb9b9e3);
 
+class CalDate {
+  int day;
+  String weekend;
+  bool isEvent;
+
+  CalDate(this.day, this.weekend, {this.isEvent = false});
+}
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -13,6 +21,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final List<CalDate> _calItems = List.generate(
+      10,
+      (index) => CalDate(
+          DateTime.now()
+              .add(
+                Duration(days: index),
+              )
+              .day,
+          "Tue",
+          isEvent: index % 4 == 0 ? true : false));
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,14 +46,10 @@ class _HomePageState extends State<HomePage> {
         child: Stack(
           children: [
             Positioned(
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0,
               child: Column(
                 children: [
                   Expanded(
-                    flex: 5,
+                    flex: 6,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -38,19 +59,21 @@ class _HomePageState extends State<HomePage> {
                             child: Row(
                               children: [
                                 Expanded(
-                                    child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: CircleAvatar(
-                                    radius: 32,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: CircleAvatar(
+                                      radius: 32,
+                                    ),
                                   ),
-                                )),
+                                ),
                                 Expanded(
                                     child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Text(
                                       'Apr. 2021',
-                                      style: TextStyle(color: Colors.white, fontSize: 16),
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 18),
                                     ),
                                     IconButton(
                                       icon: Icon(Icons.keyboard_arrow_down),
@@ -141,12 +164,72 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Expanded(
-                      flex: 4,
-                      child: Placeholder(
-                        color: Colors.purple,
-                      )),
+                    flex: 4,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      child: ListView.builder(
+                        itemCount: _calItems.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                            child: SizedBox(
+                              width: 72,
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      flex: 2,
+                                      child: CircleAvatar(
+                                        radius: 32,
+                                        backgroundColor:
+                                            Colors.white.withOpacity(0.2),
+                                        foregroundColor: Colors.white,
+                                        child: Text(
+                                          '${_calItems[index].day}',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        '${_calItems[index].weekend}',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: _calItems[index].isEvent
+                                          ? Container(
+                                              child: Center(
+                                                child: CircleAvatar(
+                                                  radius: 4,
+                                                  backgroundColor:
+                                                      deepPurpleColor,
+                                                ),
+                                              ),
+                                            )
+                                          : Container(),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                   Expanded(
-                      flex: 10,
+                      flex: 15,
                       child: Placeholder(
                         color: Colors.purple,
                       ))
