@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical_app/mock/mock_schedule.dart';
 
 Color backgroundColor = Color(0xff27272c);
 Color deepDarkColor = Color(0xff17171b);
@@ -229,10 +230,46 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Expanded(
-                      flex: 15,
-                      child: Placeholder(
-                        color: Colors.purple,
-                      ))
+                    flex: 15,
+                    child: ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            height: 140,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  flex: 3,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Align(
+                                      alignment: Alignment.topCenter,
+                                      child: Text(
+                                        doctorScheduleItems[index].timeIndex ?? '-',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 10,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.05),
+                                      borderRadius: BorderRadius.circular(24),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: doctorScheduleItems.length,
+                    ),
+                  )
                 ],
               ),
             ),
